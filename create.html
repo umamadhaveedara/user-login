@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- css link  -->
+    <link rel="stylesheet" href="create.css" />
+    <!-- font-awesome link  -->
+    <script
+      src="https://kit.fontawesome.com/6fc8c449da.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- google font link  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- javascript link  -->
+    <script src="create.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create your account</h1>
+      <form action="/" method="post" class="form">
+        <input
+          type="text"
+          name="firstname"
+          id="firstname"
+          placeholder="Enter First Name"
+        />
+        <p id="firstnamemgs"></p>
+        <br />
+        <input
+          type="text"
+          name="lastname"
+          id="lastname"
+          placeholder="Enter Last Name"
+        />
+        <p id="lastnamemgs"></p>
+        <br />
+        <input type="text" name="email" id="email" placeholder="Enter Email" />
+        <p id="emailmgs"></p>
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Enter Password
+            "
+        />
+        <p id="passwordmgs"></p>
+        <br />
+        <button type="submit" class="btn" onclick="valid(event)">Submit</button>
+      </form>
+      <h3 id="login">Already have an account? <a href="#">Login</a></h3>
+    </div>
+  </body>
+</html>

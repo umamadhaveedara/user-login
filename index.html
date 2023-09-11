@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- css link  -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- font-awesome link  -->
+    <script
+      src="https://kit.fontawesome.com/6fc8c449da.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- google font link  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- javascript link  -->
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-form">
+        <h1>Logo</h1>
+        <h2>Welcome Back!</h2>
+        <button class="btn">
+          <i class="fa-brands fa-google"></i> Log in with Google
+        </button>
+        <h2 class="normal_text">Or Login with Email</h2>
+        <form action="#" class="form" id="form">
+          <input
+            type="text"
+            name="mail"
+            id="mail-index"
+            placeholder="Email"
+          />
+          <p id="emailvalid"></p>
+          <br />
+          <input
+            type="password"
+            name="password"
+            id="password-index"
+            placeholder="password"
+          />
+          <p id="passvalid"></p>
+          <div class="other-info">
+            <div class="keepinfo-data">
+              <input type="checkbox" name="keepme" id="keepme" />
+              <h3 class="keepmedata">Keep me logged in</h3>
+            </div>
+            <div class="forgot">
+              <a id="forgot" href="#">Forgot password</a>
+            </div>
+          </div>
+          <button id="submit-btn" type="submit" onclick = "validlogin(event)">Log in</button>
+        </form>
+        <h3 class="noaccount">
+          Don't have an account? <a href="#" id="noaccount">Sign up</a>
+        </h3>
+      </div>
+      <div class="main-img">
+        <img
+          src="images/undraw_Mobile_login_re_9ntv (1).png"
+          alt="img"
+          srcset=""
+        />
+      </div>
+    </div>
+  </body>
+</html>
