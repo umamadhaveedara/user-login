@@ -13,7 +13,7 @@ email.addEventListener("input", () => {
   } else if (
     !email.value.match(/(\<|^)[\w\d._%+-]+@(?:[\w\d-]+\.)+(\w{2,})(\>|$)/i)
   ) {
-    emailvalid.textContent = "Please Enter a Valid Email";
+    // emailvalid.textContent = "This field is required";
     validemaildata = false;
   } else {
     emailvalid.textContent = "";
@@ -29,7 +29,7 @@ function validcheck(event){
       email.value = ""
     }else{
       // alert("Please Enter a Valid Email")
-      emailvalid.textContent = "Please Enter a Valid Email";
+      emailvalid.textContent = "This field is required";
       event.preventDefault()
     }
 }

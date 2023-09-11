@@ -23,8 +23,8 @@ mailIndex.addEventListener("input", () => {
   } else if (
     !mailIndex.value.match(/(\<|^)[\w\d._%+-]+@(?:[\w\d-]+\.)+(\w{2,})(\>|$)/i)
   ) {
-    emailvalid.textContent = "Please Enter a Valid Email";
     validemaildata = false;
+    // emailvalid.textContent = "Please Enter a Valid Email";
   } else {
     emailvalid.textContent = "";
     validemaildata = true;
@@ -37,7 +37,7 @@ passwordIndex.addEventListener("input", () => {
     passvalid.textContent = "";
     validpassworddata = false
   } else if (!passwordIndex.value.match(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/)) {
-    passvalid.textContent = "Please Enter a Valid Password";
+    // passvalid.textContent = "Please Enter a Valid Password";
     validpassworddata = false
   } else {
     passvalid.textContent = "";
@@ -48,12 +48,22 @@ passwordIndex.addEventListener("input", () => {
 function validlogin(event){
     if(validemaildata && validpassworddata){
       event.preventDefault()
+      emailvalid.textContent = ""
+      passvalid.textContent = ""
       // alert("Sucessfully login")
       window.open("sucessfullylogin.html","_self")
     }
-    else{
-      passvalid.textContent = "Please Enter a Valid Password";
-      emailvalid.textContent = "Please Enter a Valid Email";
+    else if(validemaildata){
       event.preventDefault()
+      passvalid.textContent = "This field is required";
+    }
+    else if(validpassworddata){
+      event.preventDefault()
+      emailvalid.textContent = "This field is required";
+    }
+    else{
+      event.preventDefault()
+      passvalid.textContent = "This field is required";
+      emailvalid.textContent = "This field is required";
     }
 }

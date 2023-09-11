@@ -53,6 +53,7 @@ firstname.addEventListener("input", () => {
     validfirstnamedata = false
   }else{
     validfirstnamedata = true
+    firstnamemgs.textContent = "";
   }
 });
 
@@ -63,6 +64,7 @@ lastname.addEventListener("input", () => {
   }
   else{
     validlastnamedata = true
+    lastnamemgs.textContent = "";
   }
 });
 
@@ -76,6 +78,30 @@ function valid(event){
       lastname.value = ""
       email.value = ""
       password.value = ""
+      event.preventDefault()
+    }
+    else if(validemaildata){
+      firstnamemgs.textContent = "This field is required"
+      lastnamemgs.textContent = "This field is required"
+      passwordmgs.innerHTML = "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
+      event.preventDefault()
+    }
+    else if(validpassworddata){
+      emailmgs.textContent = "Please Enter a Valid Email";
+      firstnamemgs.textContent = "This field is required"
+      lastnamemgs.textContent = "This field is required"
+      event.preventDefault()
+    }
+    else if(validfirstnamedata){
+      emailmgs.textContent = "Please Enter a Valid Email";
+      lastnamemgs.textContent = "This field is required"
+      passwordmgs.innerHTML = "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
+      event.preventDefault()
+    }
+    else if(validlastnamedata){
+      emailmgs.textContent = "Please Enter a Valid Email";
+      firstnamemgs.textContent = "This field is required"
+      passwordmgs.innerHTML = "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
       event.preventDefault()
     }
     else{
