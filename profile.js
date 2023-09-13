@@ -2,21 +2,26 @@ const login = document.getElementById("login");
 const firstname = document.getElementById("firstname");
 const lastname = document.getElementById("lastname");
 const email = document.getElementById("email");
-const password = document.getElementById("password");
-const passwordmgs = document.getElementById("passwordmgs");
+// const password = document.getElementById("password");
+// const passwordmgs = document.getElementById("passwordmgs");
 const emailmgs = document.getElementById("emailmgs");
 const firstnamemgs = document.getElementById("firstnamemgs");
 const lastnamemgs = document.getElementById("lastnamemgs");
 
-login.addEventListener("click", () => {
-  window.open("index.html", "_self");
-});
-
 var validemaildata;
-var validpassworddata;
+// var validpassworddata;
 var validfirstnamedata;
 var validlastnamedata;
 
+function changepassword1() {
+  window.open("changepassword.html", "_self");
+}
+function logout1(){
+  window.open("index.html","_self")
+}
+function gotodashbord(){
+  window.open("dashbord.html","_self")
+}
 email.addEventListener("input", () => {
   if (email.value.trim() === "") {
     emailmgs.textContent = "";
@@ -32,24 +37,6 @@ email.addEventListener("input", () => {
   }
 });
 
-password.addEventListener("input", () => {
-  if (password.value.trim() === "") {
-    passwordmgs.textContent = "";
-    validpassworddata = false;
-  } else if (
-    !password.value.match(
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
-    )
-  ) {
-    // passwordmgs.textContent = "Password length should be between 6 and 16";
-    passwordmgs.innerHTML =
-      "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
-    validpassworddata = false;
-  } else {
-    passwordmgs.textContent = "";
-    validpassworddata = true;
-  }
-});
 
 firstname.addEventListener("input", () => {
   if (firstname.value.trim() === "") {
@@ -75,60 +62,47 @@ lastname.addEventListener("input", () => {
     lastnamemgs.textContent = "";
   }
 });
-
 function valid(event) {
   if (
     validemaildata &&
-    validpassworddata &&
     validfirstnamedata &&
     validlastnamedata
   ) {
     event.preventDefault();
-    window.open("sucessfullycreated.html", "_self");
+    // window.open("sucessfullycreated.html", "_self");
     // alert("Sucessfully created an account!")
     firstname.value = "";
     lastname.value = "";
     email.value = "";
-    password.value = "";
+    toastr.success("Sucessfully Updated")
     event.preventDefault();
+    validemaildata = false;
+    validfirstnamedata = false;
+    validlastnamedata = false;
   } else if (validemaildata) {
-    firstnamemgs.textContent = "This field is required";
-    lastnamemgs.textContent = "This field is required";
-    passwordmgs.innerHTML =
-      "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
-    event.preventDefault();
-  } else if (validpassworddata) {
-    emailmgs.textContent = "Please Enter a Valid Email";
     firstnamemgs.textContent = "This field is required";
     lastnamemgs.textContent = "This field is required";
     event.preventDefault();
   } else if (validfirstnamedata) {
     emailmgs.textContent = "Please Enter a Valid Email";
     lastnamemgs.textContent = "This field is required";
-    passwordmgs.innerHTML =
-      "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
     event.preventDefault();
   } else if (validlastnamedata) {
     emailmgs.textContent = "Please Enter a Valid Email";
     firstnamemgs.textContent = "This field is required";
-    passwordmgs.innerHTML =
-      "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
     event.preventDefault();
-  } else if (validemaildata && validpassworddata) {
-    firstnamemgs.textContent = "This field is required";
-    lastnamemgs.textContent = "This field is required";
-  } else if((validpassworddata)&& !(validfirstnamedata && validlastnamedata)){
-    passwordmgs.innerHTML = "";
-    firstnamemgs.textContent = "This field is required";
-    lastnamemgs.textContent = "This field is required";
+  }else if(validfirstnamedata && validlastnamedata){
+    firstnamemgs.textContent = "";
+    lastnamemgs.textContent = "";
+  }else if(validfirstnamedata && validemaildata){
+    firstnamemgs.textContent = "";
+    emailmgs.textContent = "";
   }
   else {
     // alert("Please fill all the details")
     emailmgs.textContent = "Please Enter a Valid Email";
     firstnamemgs.textContent = "This field is required";
     lastnamemgs.textContent = "This field is required";
-    passwordmgs.innerHTML =
-      "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
     event.preventDefault();
   }
 }

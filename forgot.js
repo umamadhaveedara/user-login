@@ -14,6 +14,7 @@ email.addEventListener("input", () => {
     !email.value.match(/(\<|^)[\w\d._%+-]+@(?:[\w\d-]+\.)+(\w{2,})(\>|$)/i)
   ) {
     // emailvalid.textContent = "This field is required";
+    emailvalid.textContent = "Please Enter a Valid Email";
     validemaildata = false;
   } else {
     emailvalid.textContent = "";

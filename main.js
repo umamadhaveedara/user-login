@@ -24,7 +24,7 @@ mailIndex.addEventListener("input", () => {
     !mailIndex.value.match(/(\<|^)[\w\d._%+-]+@(?:[\w\d-]+\.)+(\w{2,})(\>|$)/i)
   ) {
     validemaildata = false;
-    // emailvalid.textContent = "Please Enter a Valid Email";
+    emailvalid.textContent = "Please Enter a Valid Email";
   } else {
     emailvalid.textContent = "";
     validemaildata = true;
@@ -36,10 +36,12 @@ passwordIndex.addEventListener("input", () => {
   if (passwordIndex.value.trim() === "") {
     passvalid.textContent = "";
     validpassworddata = false
-  } else if (!passwordIndex.value.match(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/)) {
+  } 
+  // else if (!passwordIndex.value.match(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/)) {
     // passvalid.textContent = "Please Enter a Valid Password";
-    validpassworddata = false
-  } else {
+    // validpassworddata = false
+  // }
+   else {
     passvalid.textContent = "";
     validpassworddata = true
   }
@@ -50,8 +52,10 @@ function validlogin(event){
       event.preventDefault()
       emailvalid.textContent = ""
       passvalid.textContent = ""
+      mailIndex.value = ""
+      passwordIndex.value = ""
       // alert("Sucessfully login")
-      window.open("sucessfullylogin.html","_self")
+      window.open("dashbord.html","_self")
     }
     else if(validemaildata){
       event.preventDefault()

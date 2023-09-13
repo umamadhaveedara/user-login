@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>profile</title>
+     <!-- css link  -->
+     <link rel="stylesheet" href="profile.css" />
+     <!-- font-awesome link  -->
+     <script
+       src="https://kit.fontawesome.com/6fc8c449da.js"
+       crossorigin="anonymous"
+     ></script>
+     <!-- google font link  -->
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link
+       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+       rel="stylesheet"
+     /> 
+     <!-- toastr css link  -->
+     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- toastr jquery link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+     <!-- toastr js link  -->
+     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+     <script src="profile.js" defer></script> 
+  </head>
+  <body>
+    <nav class="navbar">
+      <h3 class="logo">LOGO</h3>
+      <div class="nav-main">
+
+        <h1 onclick="gotodashbord()"
+          style="
+            font-size: medium;
+            font-weight: 600;
+            text-align: center;
+            color: #021832;
+            text-transform: uppercase;
+            margin: 0px 20px;
+            cursor: pointer;
+          "
+        >
+          Home
+        </h1>
+        <div class="dropdown">
+          <button class="dropbtn">
+            <i class="fa-solid fa-user"></i>
+            <p>Mr. Uma</p>
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#" onclick="profile()">Profile</a>
+            <a href="#" onclick="changepassword1()">Change Password</a>
+            <a href="#" onclick="logout1()">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="content">
+        <div class="container">
+            <form action="/" method="post" class="form">
+              <input
+                type="text"
+                name="firstname"
+                id="firstname"
+                placeholder="Enter First Name"
+              />
+              <p id="firstnamemgs"></p>
+             
+              <input
+                type="text"
+                name="lastname"
+                id="lastname"
+                placeholder="Enter Last Name"
+              />
+              <p id="lastnamemgs"></p>
+             
+              <input type="text" name="email" id="email" placeholder="Enter Email" />
+              <p id="emailmgs"></p>
+             
+              <!-- <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter Password
+                  "
+              />
+              <p id="passwordmgs"></p>
+              <br /> -->
+              <button type="submit" class="btn" onclick="valid(event)">Update</button>
+            </form>
+          </div>    
+    </div>
+  </body>
+</html>
