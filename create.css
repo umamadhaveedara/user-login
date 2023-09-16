@@ -83,22 +83,3 @@ input[type="password"] {
 #passwordmgs li{
   margin-left: 1em;
 }
-/* @media screen and (max-width: 768px) {
-  .container {
-    width: auto;
-    height: 80%;
-  }
-  .btn {
-    width: 90%;
-  }
-  input[type="text"],
-  input[type="password"] {
-    width: 90%;
-  }
-} */ */
-/* @media screen and (max-width: 350px){
-  .container{
-    height: 60%;
-    width: 90%;
-  }
-}

@@ -84,13 +84,14 @@ function valid(event) {
     validlastnamedata
   ) {
     event.preventDefault();
-    window.open("sucessfullycreated.html", "_self");
+    // window.open("sucessfullycreated.html", "_self");
+    toastr.success("Sucessfully created!")
     // alert("Sucessfully created an account!")
     firstname.value = "";
     lastname.value = "";
     email.value = "";
     password.value = "";
-    event.preventDefault();
+    // event.preventDefault();
   } else if (validemaildata) {
     firstnamemgs.textContent = "This field is required";
     lastnamemgs.textContent = "This field is required";
@@ -124,9 +125,9 @@ function valid(event) {
   }
   else {
     // alert("Please fill all the details")
-    emailmgs.textContent = "Please Enter a Valid Email";
-    firstnamemgs.textContent = "This field is required";
-    lastnamemgs.textContent = "This field is required";
+      emailmgs.textContent = "Please Enter a Valid Email";
+      firstnamemgs.textContent = "This field is required";
+      lastnamemgs.textContent = "This field is required";
     passwordmgs.innerHTML =
       "<ul><p>Password Should contain</p><li>length should be between 6 and 16</li><li>One Special Char</li><li>One Uppercase & Number</li></ul>";
     event.preventDefault();

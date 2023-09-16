@@ -25,7 +25,8 @@ email.addEventListener("input", () => {
 function validcheck(event){
     if(validemaildata){
       event.preventDefault()
-      window.open("forgotmail.html","_self")
+      toastr.success("Sucessfully Updated")
+      // window.open("forgotmail.html","_self")
       // alert("Mail sent sucessfully")
       email.value = ""
     }else{
