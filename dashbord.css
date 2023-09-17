@@ -95,7 +95,9 @@ body {
   margin: 10px 0px;
   display: flex;
   flex-wrap: wrap;
-  width: 400px;
+  /* width: 400px; */
+  flex: 1 1 400px;
+  margin: 0.5em 0.5em;
   /* flex: 2 1 400px; */
   flex-direction: column;
   /* height: 40%; */
@@ -219,6 +221,11 @@ body {
   height: 200px;
   object-fit: contain;
 }
+.userIcons button{
+  outline: none;
+  border: none;
+  background-color: white;
+}
 input[type="text"]{
   height: 3em;
   outline: none;
@@ -259,9 +266,6 @@ input[type="text"]{
   }
   .userIcons i{
     padding: 0px 5px;
-  }
-  .userBox{
-    width: 100%;
   }
   .addUserPopUp{
     width: 70%;
