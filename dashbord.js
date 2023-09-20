@@ -12,9 +12,12 @@ const imagePreview = document.getElementById("image-preview");
 const photomgs = document.getElementById("photomgs");
 // const userBox = document.getElementById("userBox");
 const dataBox = document.getElementById("dataBox");
-const addUserMainBtn = document.getElementById("addUserMainBtn")
+const addUserMainBtn = document.getElementById("addUserMainBtn");
+const popuptitle = document.getElementById("popuptitle");
 let cardURL = "";
 let users = [];
+
+
 
 function profile() {
   window.open("profile.html", "_self");
@@ -28,11 +31,13 @@ function logout1() {
 
 function addUserBtn() {
   addUserPopUp.style.display = "block";
-  addUserMainBtn.innerText = "Add User"
+  addUserMainBtn.innerText = "Add User";
+  popuptitle.innerText = "Add User";
 }
 function ClosePopUp(event) {
   addUserPopUp.style.display = "none";
   event.preventDefault();
+  clearForm();
 }
 
 var validfirstnamedata;
@@ -109,6 +114,7 @@ function adduser() {
   const user = { firstname1, lastname1, email1, phone1, image: cardURL };
   users.push(user);
   addUserPopUp.style.display = "none";
+  clearForm();
 }
 
 function displayuser() {
@@ -134,9 +140,19 @@ function updateUser(index) {
   document.getElementById("email").value = user.email1;
   document.getElementById("phone").value = user.phone1;
   document.getElementById("image-input").value = "";
+  if (imageInput.value === "") {
+    user.image = user.image;
+  }
+  document.getElementById("image-preview").src = user.image;
   addUserPopUp.style.display = "block";
-  addUserMainBtn.innerText = "Update User"
+  addUserMainBtn.innerText = "Update User";
+  popuptitle.innerText = "Update User";
+  // user.firstname1 = firstname;
+  // user.lastname1 = lastname;
+  // user.email1 = email;
+  // user.phone1 = phone;
   deleteUser(index);
+  addUserPopUp.scrollTop = 0;
 }
 
 function clearForm() {
@@ -146,11 +162,21 @@ function clearForm() {
   document.getElementById("phone").value = "";
   document.getElementById("image-input").value = "";
   imagePreview.src = "";
+  // validfirstnamedata = false;
+  // validlastnamedata = false;
+  // validemaildata = false;
+  // validPhoneData = false;
+  // validPhotoData = false;
+  // firstnamemgs.textContent = "";
+  // lastnamemgs.textContent = "";
+  // phonemgs.textContent = "";
+  // photomgs.textContent = "";
+  // emailmgs.textContent = "";
 }
-
 
 function valid(event) {
   if (
+    firstname.value !== "" &&
     validfirstnamedata &&
     validlastnamedata &&
     validemaildata &&
@@ -160,7 +186,6 @@ function valid(event) {
     toastr.success("Sucessfully User Added");
     adduser();
     displayuser();
-    clearForm();
     event.preventDefault();
   } else if (validemaildata) {
     firstnamemgs.textContent = "This field is required";

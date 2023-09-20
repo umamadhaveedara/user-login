@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="dashbord.css">
     <script src="dashbord.js" defer></script>
   </head>
-  <body>
+  <body onclick="hideAddUserPopUp()">
     <nav class="navbar">
       <h3 class="logo">LOGO</h3>
       <div class="nav-main">
@@ -103,6 +103,7 @@
       </div>
       <div class="addUserPopUp" id="addUserPopUp">
         <div class="closeBtn">
+          <h3 id="popuptitle">Add User</h3>
       <button class="btn" id="PopUpCloseBtn" onclick="ClosePopUp(event)"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <form action="/" class="addUserPopUpForm">

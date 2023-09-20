@@ -4,6 +4,7 @@ body {
   background-color: #cbe3ff;
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
+  height: 100vh !important;
 }
 
 .navbar {
@@ -88,7 +89,7 @@ body {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   /* border: 2px solid red; */
 }
 .userBox{
@@ -96,7 +97,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   /* width: 400px; */
-  flex: 1 1 400px;
+  flex: 0 1 400px;  
   margin: 0.5em 0.5em;
   /* flex: 2 1 400px; */
   flex-direction: column;
@@ -163,9 +164,11 @@ body {
 }
 .addUserPopUp{
   width: 40%;
+  height: 70%;
+  overflow-y: scroll;
   /* border: 2px solid red; */
   background-color: white;
-  box-shadow: 0.5px 0.5px 10px 1px rgba(28, 28, 28, 0.167);
+  box-shadow: 0.5px 0.5px 20px 0px rgba(28, 28, 28, 0.301);
   border-radius: 8px;
   padding: 2em;
   display: flex;
@@ -178,6 +181,11 @@ body {
   transform: translate(-50%);
   display: none;
 }
+.addUserPopUp::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
 .addUserPopUpForm{
   display: flex;
   flex-direction: column;
@@ -192,7 +200,8 @@ body {
 }
 .closeBtn{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 }
 #PopUpCloseBtn{
   margin-bottom: 1em;
@@ -232,9 +241,19 @@ input[type="text"]{
   background-color: white;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
+  /* cursor: pointer; */
   box-shadow: 0.5px 0.5px 10px 1px rgba(28, 28, 28, 0.167);
   padding: 0px 1em;
+}
+input[type="file"]::file-selector-button{
+  background-color: #0c0765;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0.5px 0.5px 10px 1px rgba(28, 28, 28, 0.167);
+  padding: 0.8em 1.2em;
 }
 .btn{
   padding: 0em 1em;
@@ -270,4 +289,7 @@ input[type="text"]{
   .addUserPopUp{
     width: 70%;
   }
+  /* .userBox{
+    flex: 1 1 400px;
+  } */
 }
