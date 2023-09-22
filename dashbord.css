@@ -66,6 +66,9 @@ body {
 }
 .content {
   padding: 95px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   /* position: absolute; */
 }
 .addUserOption{
@@ -83,6 +86,51 @@ body {
   background-color: #0c0765;
   color: white;
   cursor: pointer;
+}
+/* #updateUserMainBtn{
+  display: none;
+  margin-bottom: 1em;
+} */
+
+.deletePopUp{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 200px;
+  background-color: white;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  display: none;
+}
+.deletePopUpdata{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.deletePopUp button{
+  padding: 0.6em 1.2em;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  margin: 0em 1em;
+  color: white;
+}
+.deleteyes{
+  background-color: rgb(26, 194, 26);
+}
+.deleteno{
+  background-color: rgb(223, 10, 10);
+}
+.deletePopUp i {
+  padding-right: 0.5em;
 }
 .dataBox{
   margin-top: 1em;

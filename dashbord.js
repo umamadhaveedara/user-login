@@ -14,10 +14,10 @@ const photomgs = document.getElementById("photomgs");
 const dataBox = document.getElementById("dataBox");
 const addUserMainBtn = document.getElementById("addUserMainBtn");
 const popuptitle = document.getElementById("popuptitle");
+// const updateUserMainBtn = document.getElementById("updateUserMainBtn");
+const deletePopUp = document.getElementById("deletePopUp");
 let cardURL = "";
 let users = [];
-
-
 
 function profile() {
   window.open("profile.html", "_self");
@@ -33,6 +33,8 @@ function addUserBtn() {
   addUserPopUp.style.display = "block";
   addUserMainBtn.innerText = "Add User";
   popuptitle.innerText = "Add User";
+
+  addUserPopUp.scrollTop = 0;
 }
 function ClosePopUp(event) {
   addUserPopUp.style.display = "none";
@@ -45,6 +47,24 @@ var validlastnamedata;
 var validemaildata;
 var validPhoneData;
 var validPhotoData;
+var recheckemail;
+var recheckpassword;
+
+// email.addEventListener("input",()=>{
+//   users.forEach((checking, index)=>{
+//     if(email.value.trim() === checking.email1){
+//       recheck = false;
+//     }else if(
+//       phone.addEventListener("input",()=>{
+//         users.forEach((checkingphone, index)=>{
+//           if(phone.value.trim() === checkingphone.phone1){
+//             recheck = false;
+//           }
+//         })
+//       })
+//     )
+//   })
+// })
 
 email.addEventListener("input", () => {
   if (email.value.trim() === "") {
@@ -90,21 +110,27 @@ lastname.addEventListener("input", () => {
     lastnamemgs.textContent = "";
   }
 });
-imageInput.addEventListener("change", function () {
-  const file = imageInput.files[0];
-  if (file) {
-    var imageURL = URL.createObjectURL(file);
-    console.log(imageURL, "here");
-    imagePreview.src = imageURL;
-    cardURL = imageURL;
-    validPhotoData = true;
-    photomgs.textContent = "";
+function handleImageUrl(event) {
+  let file;
+  const files = event.target.files;
+  if (files) {
+    file = files && files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      imagePreview.src = reader.result;
+      cardURL = reader.result;
+      validPhotoData = true;
+      photomgs.textContent = "";
+    };
+    //var imageURL = URL.createObjectURL(file);
+    // console.log(imageURL, "here");
   } else {
     imagePreview.src = "";
     validPhotoData = false;
     photomgs.textContent = "This field is required";
   }
-});
+}
 
 function adduser() {
   var firstname1 = firstname.value;
@@ -126,15 +152,33 @@ function displayuser() {
     dataBox.appendChild(card);
   });
 }
-
+let userDeleteIndex = "";
 function deleteUser(index) {
-  URL.revokeObjectURL(users[index].image);
-  users.splice(index, 1);
-  displayuser();
-}
+  userDeleteIndex = index
+  deletePopUp.style.display = "block";
 
+}
+function deleteyes(event) {
+  URL.revokeObjectURL(users[userDeleteIndex].image);
+  users.splice(userDeleteIndex, 1);
+  displayuser();
+  deletePopUp.style.display = "none";
+  toastr.info("User data deleted");
+  event.preventDefault();
+}
+function deleteno(event) {
+  displayuser();
+  deletePopUp.style.display = "none";
+  event.preventDefault();
+}
+var a = "add";
+// console.log(a);
+var indexValue = "";
 function updateUser(index) {
+  indexValue = index;
   const user = users[index];
+  a = "edit";
+  console.log(user, index, a);
   document.getElementById("firstname").value = user.firstname1;
   document.getElementById("lastname").value = user.lastname1;
   document.getElementById("email").value = user.email1;
@@ -145,14 +189,26 @@ function updateUser(index) {
   }
   document.getElementById("image-preview").src = user.image;
   addUserPopUp.style.display = "block";
-  addUserMainBtn.innerText = "Update User";
+  addUserMainBtn.innerText = "Add User";
   popuptitle.innerText = "Update User";
-  // user.firstname1 = firstname;
-  // user.lastname1 = lastname;
-  // user.email1 = email;
-  // user.phone1 = phone;
-  deleteUser(index);
+  // user.firstname1 = document.getElementById("firstname").value;
+  // user.lastname1 = document.getElementById("lastname").value
+  // user.email1 = document.getElementById("email").value
+  // user.phone1 = document.getElementById("phone").value
+  users[index].firstname1 = firstname.value;
+  users[index].lastname1 = lastname.value;
+  users[index].email1 = email.value;
+  users[index].phone1 = phone.value;
   addUserPopUp.scrollTop = 0;
+}
+function edituser() {
+  users[indexValue].firstname1 = firstname.value;
+  users[indexValue].lastname1 = lastname.value;
+  users[indexValue].email1 = email.value;
+  users[indexValue].phone1 = phone.value;
+  users[indexValue].image = cardURL;
+  addUserPopUp.style.display = "none";
+  clearForm();
 }
 
 function clearForm() {
@@ -167,12 +223,28 @@ function clearForm() {
   // validemaildata = false;
   // validPhoneData = false;
   // validPhotoData = false;
-  // firstnamemgs.textContent = "";
-  // lastnamemgs.textContent = "";
-  // phonemgs.textContent = "";
-  // photomgs.textContent = "";
-  // emailmgs.textContent = "";
+  firstnamemgs.textContent = "";
+  lastnamemgs.textContent = "";
+  phonemgs.textContent = "";
+  photomgs.textContent = "";
+  emailmgs.textContent = "";
 }
+
+users.forEach((checking, index) => {
+  if (email.value.trim() === checking.email1) {
+    recheck = false;
+  } else {
+    recheckemail = true;
+  }
+});
+
+users.forEach((checkingphone, index) => {
+  if (phone.value.trim() === checkingphone.phone1) {
+    recheck = false;
+  } else {
+    recheckpassword = true;
+  }
+});
 
 function valid(event) {
   if (
@@ -183,9 +255,17 @@ function valid(event) {
     validPhoneData &&
     validPhotoData
   ) {
-    toastr.success("Sucessfully User Added");
-    adduser();
-    displayuser();
+    if (a === "edit") {
+      edituser();
+      displayuser();
+      toastr.success("Sucessfully User Updated");
+      a = "add";
+    } else if (a === "add") {
+      adduser();
+      displayuser();
+      toastr.success("Sucessfully User Added");
+      clearForm();
+    }
     event.preventDefault();
   } else if (validemaildata) {
     firstnamemgs.textContent = "This field is required";
@@ -217,7 +297,14 @@ function valid(event) {
     lastnamemgs.textContent = "This field is required";
     phonemgs.textContent = "This field is required";
     event.preventDefault();
-  } else {
+  }
+  // else if(!recheckemail || !recheckpassword){
+  //   toastr.info("Data allready exist");
+  //   recheckemail = false;
+  //   recheckpassword = false;
+  //   event.preventDefault();
+  // }
+  else {
     emailmgs.textContent = "This field is required";
     firstnamemgs.textContent = "This field is required";
     lastnamemgs.textContent = "This field is required";
