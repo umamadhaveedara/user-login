@@ -189,7 +189,7 @@ function updateUser(index) {
   }
   document.getElementById("image-preview").src = user.image;
   addUserPopUp.style.display = "block";
-  addUserMainBtn.innerText = "Add User";
+  addUserMainBtn.innerText = "Update User";
   popuptitle.innerText = "Update User";
   // user.firstname1 = document.getElementById("firstname").value;
   // user.lastname1 = document.getElementById("lastname").value
@@ -260,6 +260,7 @@ function valid(event) {
       displayuser();
       toastr.success("Sucessfully User Updated");
       a = "add";
+      addUserMainBtn.innerText = "Add User";
     } else if (a === "add") {
       adduser();
       displayuser();
