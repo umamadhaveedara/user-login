@@ -16,6 +16,7 @@ const addUserMainBtn = document.getElementById("addUserMainBtn");
 const popuptitle = document.getElementById("popuptitle");
 // const updateUserMainBtn = document.getElementById("updateUserMainBtn");
 const deletePopUp = document.getElementById("deletePopUp");
+const search =  document.getElementById("search")
 let cardURL = "";
 let users = [];
 
@@ -154,9 +155,8 @@ function displayuser() {
 }
 let userDeleteIndex = "";
 function deleteUser(index) {
-  userDeleteIndex = index
+  userDeleteIndex = index;
   deletePopUp.style.display = "block";
-
 }
 function deleteyes(event) {
   URL.revokeObjectURL(users[userDeleteIndex].image);
@@ -178,7 +178,7 @@ function updateUser(index) {
   indexValue = index;
   const user = users[index];
   a = "edit";
-  console.log(user, index, a);
+  // console.log(user, index, a);
   document.getElementById("firstname").value = user.firstname1;
   document.getElementById("lastname").value = user.lastname1;
   document.getElementById("email").value = user.email1;
@@ -230,21 +230,23 @@ function clearForm() {
   emailmgs.textContent = "";
 }
 
-users.forEach((checking, index) => {
-  if (email.value.trim() === checking.email1) {
-    recheck = false;
-  } else {
-    recheckemail = true;
-  }
-});
+// search.addEventListener("input",(event)=>{
+//   searchValue = event.target.value;
+//   console.log(searchValue)
+//   let searchData = users.filter((user) =>{
+//     var isVisiable = user.firstname1.includes(searchValue) || user.lastname1.includes(searchValue) || user.email1.includes(searchValue) || user.phone1.includes(searchValue)
+//   })
+// })
 
-users.forEach((checkingphone, index) => {
-  if (phone.value.trim() === checkingphone.phone1) {
-    recheck = false;
-  } else {
-    recheckpassword = true;
-  }
-});
+search.addEventListener("input", (event)=>{
+  searchValue = event.target.value;
+  var searchData = users.filter((user)=>{
+    return user.firstname1.includes(searchValue) || user.lastname1.includes(searchValue) || user.email1.includes(searchValue) || user.phone1.includes(searchValue)
+  })
+  var user2 = searchData
+  displayuser();
+})
+
 
 function valid(event) {
   if (
@@ -264,6 +266,7 @@ function valid(event) {
     } else if (a === "add") {
       adduser();
       displayuser();
+      console.log(users)
       toastr.success("Sucessfully User Added");
       clearForm();
     }

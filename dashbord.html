@@ -13,19 +13,21 @@
     ></script>
     <title>Dashbord</title>
     <!-- toastr css link  -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+    />
     <!-- toastr jquery link  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-     <!-- toastr js link  -->
-     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <link rel="stylesheet" href="dashbord.css">
+    <!-- toastr js link  -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="dashbord.css" />
     <script src="dashbord.js" defer></script>
   </head>
   <body>
     <nav class="navbar">
       <h3 class="logo">LOGO</h3>
       <div class="nav-main">
-
         <h1
           style="
             font-size: medium;
@@ -55,6 +57,9 @@
     </nav>
     <div class="content">
       <div class="addUserOption">
+        <div class="search-main">
+          <input type="type" name="search" id="search" placeholder="Search User">
+        </div>
         <button id="addUserBtn" onclick="addUserBtn()">Add User</button>
       </div>
       <div class="dataBox" id="dataBox">
@@ -104,45 +109,68 @@
       <div class="addUserPopUp" id="addUserPopUp">
         <div class="closeBtn">
           <h3 id="popuptitle">Add User</h3>
-      <button class="btn" id="PopUpCloseBtn" onclick="ClosePopUp(event)"><i class="fa-solid fa-xmark"></i></button>
+          <button class="btn" id="PopUpCloseBtn" onclick="ClosePopUp(event)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
         <form action="/" class="addUserPopUpForm">
           <input
-          type="text"
-          name="firstname"
-          id="firstname"
-          placeholder="Enter First Name"
-        />
-        <p id="firstnamemgs"></p>
-        <input
-          type="text"
-          name="lastname"
-          id="lastname"
-          placeholder="Enter Last Name"
-        />
-        <p id="lastnamemgs"></p>
-        <input type="text" name="email" id="email" placeholder="Enter Email" />
-        <p id="emailmgs"></p>
-        <input type="text" name="phone" id="phone" placeholder="Enter Phone Number" />
-        <p id="phonemgs"></p>
-        <div id="image-preview-container">
-          <img id="image-preview"  alt="Image Preview">
-        </div>
-        <input type="file" id="image-input" accept="image/*" onchange="handleImageUrl(event)">
-        <p id="photomgs"></p>
-        <br>
-        <!-- <button class="btn" id="updateUserMainBtn" onclick="updateuser(event)" >Update User</button> -->
-        <button class="btn" id="addUserMainBtn" onclick="valid(event)" >Add User</button>
-      </form>
+            type="text"
+            name="firstname"
+            id="firstname"
+            placeholder="Enter First Name"
+          />
+          <p id="firstnamemgs"></p>
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            placeholder="Enter Last Name"
+          />
+          <p id="lastnamemgs"></p>
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Enter Email"
+          />
+          <p id="emailmgs"></p>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="Enter Phone Number"
+          />
+          <p id="phonemgs"></p>
+          <div id="image-preview-container">
+            <img id="image-preview" alt="Image Preview" />
+          </div>
+          <input
+            type="file"
+            id="image-input"
+            accept="image/*"
+            onchange="handleImageUrl(event)"
+          />
+          <p id="photomgs"></p>
+          <br />
+          <!-- <button class="btn" id="updateUserMainBtn" onclick="updateuser(event)" >Update User</button> -->
+          <button class="btn" id="addUserMainBtn" onclick="valid(event)">
+            Add User
+          </button>
+        </form>
       </div>
       <div class="deletePopUp" id="deletePopUp">
         <div class="deletePopUpdata">
-        <h3>Are you sure want to delete?</h3>
-        <div>
-          <button class="deleteyes" onclick="deleteyes(event)"><i class="fa-solid fa-thumbs-up"></i>Yes</button>
-          <button class="deleteno" onclick="deleteno(event)"><i class="fa-solid fa-thumbs-down"></i>No</button>
+          <h3>Are you sure want to delete?</h3>
+          <div>
+            <button class="deleteyes" onclick="deleteyes(event)">
+              <i class="fa-solid fa-thumbs-up"></i>Yes
+            </button>
+            <button class="deleteno" onclick="deleteno(event)">
+              <i class="fa-solid fa-thumbs-down"></i>No
+            </button>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   </body>
