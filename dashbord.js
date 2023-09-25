@@ -16,7 +16,8 @@ const addUserMainBtn = document.getElementById("addUserMainBtn");
 const popuptitle = document.getElementById("popuptitle");
 // const updateUserMainBtn = document.getElementById("updateUserMainBtn");
 const deletePopUp = document.getElementById("deletePopUp");
-const search =  document.getElementById("search")
+const search = document.getElementById("search");
+const emptyDataPopUp = document.getElementById("emptyDataPopUp")
 let cardURL = "";
 let users = [];
 
@@ -143,15 +144,45 @@ function adduser() {
   addUserPopUp.style.display = "none";
   clearForm();
 }
+var users2 = "";
+search.addEventListener("input", (event) => {
+  searchValue = event.target.value;
+  var searchData = users.filter((user) => {
+    return (
+      user.firstname1.includes(searchValue) ||
+      user.lastname1.includes(searchValue) ||
+      user.email1.includes(searchValue) ||
+      user.phone1.includes(searchValue)
+    );
+  });
+  users2 = searchData;
+  displayuser();
+});
 
 function displayuser() {
-  dataBox.innerHTML = "";
-  users.forEach((userdata, index) => {
-    const card = document.createElement("div");
-    card.className = "userBox";
-    card.innerHTML = `<div class="userIcons"><button onclick="updateUser(${index})"><i class="fa-solid fa-pen"></i></button><button onclick="deleteUser(${index})"><i class="fa-solid fa-trash"></i></button></div><div class="userMainInfo"><div class="userImg"><img src="${userdata.image}" alt="" srcset=""></div><div class="userdata"><p>Name: ${userdata.firstname1} ${userdata.lastname1}</p><p>Email: ${userdata.email1}</p><p>Mobile No: ${userdata.phone1}</p></div></div>`;
-    dataBox.appendChild(card);
-  });
+  if (search.value.trim() === "") {
+    dataBox.innerHTML = "";
+    users.forEach((userdata, index) => {
+      const card = document.createElement("div");
+      card.className = "userBox";
+      card.innerHTML = `<div class="userIcons"><button onclick="updateUser(${index})"><i class="fa-solid fa-pen"></i></button><button onclick="deleteUser(${index})"><i class="fa-solid fa-trash"></i></button></div><div class="userMainInfo"><div class="userImg"><img src="${userdata.image}" alt="" srcset=""></div><div class="userdata"><p>Name: ${userdata.firstname1} ${userdata.lastname1}</p><p>Email: ${userdata.email1}</p><p>Mobile No: ${userdata.phone1}</p></div></div>`;
+      dataBox.appendChild(card);
+      emptyDataPopUp.style.display = "none"
+    });
+  } else if(search.value.trim() !== ""){
+    dataBox.innerHTML = "";
+    if(users2 != ""){
+      users2.forEach((userdata, index) => {
+        const card = document.createElement("div");
+        card.className = "userBox";
+        card.innerHTML = `<div class="userIcons"><button onclick="updateUser(${index})"><i class="fa-solid fa-pen"></i></button><button onclick="deleteUser(${index})"><i class="fa-solid fa-trash"></i></button></div><div class="userMainInfo"><div class="userImg"><img src="${userdata.image}" alt="" srcset=""></div><div class="userdata"><p>Name: ${userdata.firstname1} ${userdata.lastname1}</p><p>Email: ${userdata.email1}</p><p>Mobile No: ${userdata.phone1}</p></div></div>`;
+        dataBox.appendChild(card);
+      });
+    }else if(users2 == ""){
+      emptyDataPopUp.style.display = "block"
+    }
+    
+  }
 }
 let userDeleteIndex = "";
 function deleteUser(index) {
@@ -238,15 +269,6 @@ function clearForm() {
 //   })
 // })
 
-search.addEventListener("input", (event)=>{
-  searchValue = event.target.value;
-  var searchData = users.filter((user)=>{
-    return user.firstname1.includes(searchValue) || user.lastname1.includes(searchValue) || user.email1.includes(searchValue) || user.phone1.includes(searchValue)
-  })
-  var user2 = searchData
-  displayuser();
-})
-
 
 function valid(event) {
   if (
@@ -266,7 +288,7 @@ function valid(event) {
     } else if (a === "add") {
       adduser();
       displayuser();
-      console.log(users)
+      // console.log(users);
       toastr.success("Sucessfully User Added");
       clearForm();
     }
